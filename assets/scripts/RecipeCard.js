@@ -132,7 +132,7 @@ class RecipeCard extends HTMLElement {
 
 
     const averageReview = document.createElement('span');
-    if(searchForKey(data, 'ratingValue') == undefined){
+    if(searchForKey(data, 'aggregateRating') == undefined){
       averageReview.innerText = 'No Reviews';
       rating.appendChild(averageReview);
     }else{

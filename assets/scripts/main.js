@@ -5,7 +5,10 @@
 const recipes = [
   'https://introweb.tech/assets/json/ghostCookies.json',
   'https://introweb.tech/assets/json/birthdayCake.json',
-  'https://introweb.tech/assets/json/chocolateChip.json'
+  'https://introweb.tech/assets/json/chocolateChip.json',
+  'assets/recipes/PartyCoffeeCake.json',
+  'assets/recipes/Non-alcoholicPinaColada.json',
+  'assets/recipes/GrandmaHolidayApplePie.json'
 ];
 
 // Once all of the recipes that were specified above have been fetched, their
@@ -29,6 +32,7 @@ async function init() {
   // Make the "Show more" button functional
   bindShowMore();
 }
+
 
 async function fetchRecipes() {
   return new Promise((resolve, reject) => {
@@ -86,4 +90,21 @@ function bindShowMore() {
   // in the recipeData object where you stored them/
 
   // Part 2 Explore - TODO
+  const showMoreButton = document.getElementById('button-wrapper');
+  let main = document.querySelector('main');
+  showMoreButton.addEventListener('click',() => {
+    if(showMoreButton.innerText == 'Show more'){
+      for(let x = 3; x < 6; x++){
+        let card = document.createElement('recipe-card');
+        card.data = recipeData[recipes[x]];
+        main.appendChild(card);
+      }
+      showMoreButton.innerText = 'Show less';
+    }else{
+      showMoreButton.innerText = 'Show more';
+      for(let m = 0; m < 3; m++){
+        main.removeChild(main.lastChild);
+      }
+    }
+  });
 }
